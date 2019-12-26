@@ -36,7 +36,7 @@ The patch size is 512*512 at 20x magnificaiton.
 ### methods 
 Modified DL framework with fully convs for fast WSI prediction. 
 
-We replaced **the last GAP and fc.** in **resnet34** with **AP with kernel size 16\*16 followed by fconv and classifer_conv with 1\*1 kernel **. 
+We replaced **the last GAP and fc.** in **resnet34** with **AP with kernel size 16x16 followed by fconv and classifer_conv with 1x1 kernel **. 
 
 A simple implementation is shown as followed:
 ```python
@@ -53,9 +53,15 @@ Training predurce is the same as the previous, but WSI prediction is faster than
 [reference2:RMDL: Recalibrated Multi-instance Deep Learning for Whole Slide Gastric Image Classification](https://www.researchgate.net/publication/335511979_RMDL_Recalibrated_Multi-instance_Deep_Learning_for_Whole_Slide_Gastric_Image_Classification)
 
 ### Visualization results 
-**one visualization result is the WSI prediction. We compared with the previous.**
+- one visualization result is the WSI prediction. We compared with the previous. The result of the previous is on the left, and new result is on the right. Spent time is shown in the figure.
 ![WSIprediction](https://github.com/gatsby2016/DLforWSI/blob/master/results/results1.png)
-**Another visualization result is the PCA and TSNE features points cluster visualization.**
+
+- Another visualization result is the PCA and TSNE features points cluster visualization. Upper is the PCA method and Down is based on TSNE method.
 ![PCAandTSNE](https://github.com/gatsby2016/DLforWSI/blob/master/results/pca.png)
+
+
+## TODO
+- Reorganize the `codes/`
+- convert the `slide2patch.m` to `py` script
 
 
