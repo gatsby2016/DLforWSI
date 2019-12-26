@@ -11,6 +11,9 @@ model
 modelFullyConv
 
 
-results
-
+results/*mat
+results/*npy
+results/*npz
+results/fullyConv
+results/attentionCAM
 
