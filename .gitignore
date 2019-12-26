@@ -1,0 +1,16 @@
+.idea
+__pycache__
+
+
+data/slides
+data/test
+data/train
+
+
+model
+modelFullyConv
+
+
+results
+
+
