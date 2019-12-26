@@ -11,6 +11,7 @@ In total of 5 slides *4 for training and 1 one for validation*
 
 The patch size is 512*512 at 20x magnificaiton.
 > with samples selection manually slightly. Mainly for whole white patches. 
+
 > No stain normalizaiton, no samples agumentation
 
 ## 2019/11/2 update
@@ -26,27 +27,25 @@ The patch size is 512*512 at 20x magnificaiton.
 | real non             | 7451  | 2685  | 10136 |
 | real tumor           | 11    | 12594 | 12605 |
 
------------------------
-
-
 - acc = 7451+ 12594 / (10136+12605)= 0.88144761
 - sen = recall = 12594/ 12605 = 0.999127
 - spc = 7451 / 10136 = 0.7351
 - precision = 12594 / (12594+2685) = 0.8242
 
-## 2019/12/18
+## 2019/12/18 update
 ### methods 
 Modified DL framework with fully convs for fast WSI prediction. 
-We replaced **the last GAP and fc.** in **resnet34** with **AP with kernel size 16*16 followed by fconv and classifer_conv with 1*1 kernel **. 
+
+We replaced **the last GAP and fc.** in **resnet34** with **AP with kernel size 16\*16 followed by fconv and classifer_conv with 1\*1 kernel **. 
 
 A simple implementation is shown as followed:
 ```python
-        # self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
-        # self.fc = nn.Linear(512 * block.expansion, num_classes)
-        self.avgpool = nn.AvgPool2d(kernel_size=16, stride=1)
-        self.Fconv = nn.Conv2d(512 * block.expansion, 512, kernel_size=1, stride=1, bias=False)
-        self.Fbn = norm_layer(512)
-        self.final = nn.Conv2d(512, num_classes, kernel_size=1, stride=1, bias=False)
+# self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
+# self.fc = nn.Linear(512 * block.expansion, num_classes)
+self.avgpool = nn.AvgPool2d(kernel_size=16, stride=1)
+self.Fconv = nn.Conv2d(512 * block.expansion, 512, kernel_size=1, stride=1, bias=False)
+self.Fbn = norm_layer(512)
+self.final = nn.Conv2d(512, num_classes, kernel_size=1, stride=1, bias=False)
 ```
 Training predurce is the same as the previous, but WSI prediction is faster than it.
 
@@ -54,9 +53,9 @@ Training predurce is the same as the previous, but WSI prediction is faster than
 [reference2:RMDL: Recalibrated Multi-instance Deep Learning for Whole Slide Gastric Image Classification](https://www.researchgate.net/publication/335511979_RMDL_Recalibrated_Multi-instance_Deep_Learning_for_Whole_Slide_Gastric_Image_Classification)
 
 ### Visualization results 
-one visualization result is the WSI prediction. We compared with the previous.
+**one visualization result is the WSI prediction. We compared with the previous.**
 ![WSIprediction](https://github.com/gatsby2016/DLforWSI/blob/master/results/results1.png)
-Another visualization result is the PCA and TSNE features points cluster visualization.
+**Another visualization result is the PCA and TSNE features points cluster visualization.**
 ![PCAandTSNE](https://github.com/gatsby2016/DLforWSI/blob/master/results/pca.png)
 
 
