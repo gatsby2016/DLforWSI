@@ -9,7 +9,7 @@ In total of 5 slides *4 for training and 1 one for validation*
 | training             | 23824 | 40946 |
 | validation           | 10136 | 12605 |
 
-The patch size is 512*512 at 20x magnificaiton.
+The patch size is 512\*512 at 20x magnificaiton.
 > with samples selection manually slightly. Mainly for whole white patches. 
 
 > No stain normalizaiton, no samples agumentation
@@ -65,3 +65,4 @@ Training predurce is the same as the previous, but WSI prediction is faster than
 - convert the `slide2patch.m` to `py` script
 
 
+You can refer to [Gatsby2016:Fast-WSI-Prediction](https://github.com/gatsby2016/Fast-WSI-Prediction) for more details.
